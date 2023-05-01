@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>connection visualisation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            min-height: 100vh;
+            overflow: hidden;
+            background-color: rgb(0, 0, 0);
+        }
+        canvas {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+    <canvas id="canvas"></canvas>
+</body>
+    <script src="utility.js"></script>
+    <script src="setup.js"></script>
+    <script src="node.js"></script>
+    <script src="orb.js"></script>
+    <script src="run.js"></script>
+</html>
