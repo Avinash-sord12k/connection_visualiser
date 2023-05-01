@@ -4,8 +4,8 @@ class Node {
         this.pos = new Vector(x, y);
         this.size = 3;
         this.neighbours = [];
-        this.color = [20, 0, 0];
-        this.avtivatedColor = [60, 0, 0];
+        this.color = [20, 20, 20];
+        this.avtivatedColor = [200, 200, 200];
         this.activated = 0;
     }
 
@@ -18,12 +18,31 @@ class Node {
         ctx2.stroke();
     }
 
-    draw() {
+    drawOnce() {
         ctx2.beginPath();
-        if (this.activated) {ctx2.fillStyle = `rgb(${this.avtivatedColor[0]}, ${this.avtivatedColor[1]}, ${this.avtivatedColor[2]})`}
-        else {ctx2.fillStyle = `rgb(${this.color[0]}, ${this.color[1]}, ${this.color[2]})`}
+        if (this.activated) {
+            ctx2.fillStyle = `rgb(${this.avtivatedColor[0]}, ${this.avtivatedColor[1]}, ${this.avtivatedColor[2]})`
+        }
+        else {
+            ctx2.fillStyle = `rgb(${this.color[0]}, ${this.color[1]}, ${this.color[2]})`
+        }
         ctx2.arc(this.pos.x, this.pos.y, this.size, 0, 2 * Math.PI);
         ctx2.fill();
+    }
+
+    draw() {
+        ctx.beginPath();
+        if (this.activated) {
+            ctx.fillStyle = `rgb(${this.avtivatedColor[0]}, ${this.avtivatedColor[1]}, ${this.avtivatedColor[2]})`
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = "#ffffff10"
+        }
+        else {
+            ctx.fillStyle = `rgb(${this.color[0]}, ${this.color[1]}, ${this.color[2]})`
+            ctx.shadowBlur = 0;
+        }
+        ctx.arc(this.pos.x, this.pos.y, this.size, 0, 2 * Math.PI);
+        ctx.fill();
     }
 }
 
@@ -35,7 +54,7 @@ function drawLines() {
                 node.connect(neighbour);
             }
         });
-        node.draw();
+        node.drawOnce();
     });
 }
 
@@ -45,7 +64,7 @@ function createPopulation() {
         const node = new Node(Math.random() * canvas.width, Math.random() * canvas.height);
         nodes.push(node);
     }
-      drawLines();
+    drawLines();
 }
 
 createPopulation();

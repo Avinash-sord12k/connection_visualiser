@@ -13,7 +13,7 @@ function animate() {
         ctx.fillStyle = ball.color;
         ctx.fill();
     });
-    nodes.forEach(node => {node.draw()});
+    nodes.filter(node => node.activated == 1).forEach(node => { node.draw()});
 
     // request animation frame
     requestAnimationFrame(animate);
