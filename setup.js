@@ -14,7 +14,8 @@ canvas2.width = screenWidth;
 canvas2.height = screenHeight;
 
 //setting up global variables
-const population = 1000;
-const neighbourDistance = 40;
+const population = 800;
+let neighbourDistance = 100;
 var energyBalls = [];
 var nodes = [];
+var fakeNodes = [];

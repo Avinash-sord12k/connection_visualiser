@@ -2,7 +2,7 @@
 class Orb {
     constructor(x, y, from, to) {
         this.pos = new Vector(x, y);
-        this.color = "#bbb";
+        this.color = [200, 0, 0];
         this.speed = Math.random() * 0.7 + 1;
         this.from = from;
         this.to = to;
@@ -17,7 +17,6 @@ class Orb {
 
     hasReachedDestination() {
         const distance = this.pos.subtract(this.to.pos).magnitude();
-        // this.reached = 1;
         return distance <= this.radius;
     }
 }
@@ -27,11 +26,11 @@ function moveOrbs() {
         orb.move();
         if (orb.hasReachedDestination()){
             orb.reached = 1;
+            createOrbs(orb.to, orb.color);
+            fakeNodes.push(new fakeNode(orb.to.pos.x, orb.to.pos.y, orb.color));
             energyBalls.splice(index, 1);
-            createOrbs(orb.to);
         }
     });
-    // energyBalls = energyBalls.filter(balls=> balls.reached===0);
 }
 
 
@@ -53,15 +52,15 @@ $(canvas).on("click", function (e) {
     });
 });
 
-function createOrbs(node) {
+function createOrbs(node, last_color) {
     if (node.activated === 1) return;
+    if (node.neighbours.filter(neighbour => neighbour.activated === 0).length === 0) return;
+    node.activated = 1;
     node.neighbours.filter(neighbour => neighbour.activated === 0).forEach(neighbour => {
-        node.activated = 1;
         const orb = new Orb(node.pos.x, node.pos.y, node, neighbour);
+        orb.color = (last_color) ? rotateColor(last_color, 30): orb.color;
+        node.color = orb.color;
         energyBalls.push(orb);
     });
 }
 
-
-
-// setInterval(moveOrbs, 10);
