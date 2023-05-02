@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+}
+
+canvas {
+    position: absolute;
+}
+
+.control-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+    transition: 300ms;
+    overflow-x: visible;
+}
+.control-container.hide:not(#toggle-control-panel) {
+    opacity: 0.2;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.control {
+    margin: 30px 0;
+}
+
+.control-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.control-content {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+
+.control-item {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.control-item-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.control-item-content {
+    display: flex;
+    align-items: center;
+}
+.control-item-content input {
+    width: 50px;
+    height: 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    text-align: center;
+}
+.control-options {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.control-options button {
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    cursor: pointer;
+}
+.control-options button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+#toggle-control-panel {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 5px;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: white;
+    backdrop-filter: blur(10px);
+    border: none;
+}
