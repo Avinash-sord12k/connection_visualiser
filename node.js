@@ -2,7 +2,7 @@
 class Node {
     constructor(x, y) {
         this.pos = new Vector(x, y);
-        this.size = 3;
+        this.size = nodeSize;
         this.neighbours = [];
         this.color = [20, 20, 20];
         this.avtivatedColor = [200, 0, 0];
@@ -42,10 +42,9 @@ class Node {
 }
 
 function fakeNode(x, y, color) {
-    this.x = x;
-    this.y = y;
+    this.pos = new Vector(x, y);
     this.color = color;
-    this.size = 3;
+    this.size = nodeSize;
     this.draw = function () {
         ctx.beginPath();
         ctx.fillStyle = `rgb(${this.color[0]}, ${this.color[1]}, ${this.color[2]})`
@@ -68,7 +67,7 @@ function drawLines(neighbourDistance) {
 }
 
 // creating node population
-function createPopulation() {
+function createPopulation(population, neighbourDistance) {
     for (let idx = 0; idx < population; idx++) {
         const node = new Node(Math.random() * canvas.width, Math.random() * canvas.height);
         nodes.push(node);
@@ -97,5 +96,13 @@ function createHexagonalPopulation(radius = 100, sides = 6, padding = 10, interl
     drawLines(neighbourDistance);
 }
 
-createPopulation();
+createPopulation(population, neighbourDistance);
 // createHexagonalPopulation(redius=20, sides = 6, padding= 10, interlocking=1);
+
+function resetPage() {
+    nodes = [];
+    energyBalls = [];
+    fakeNodes = [];
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx2.clearRect(0, 0, canvas.width, canvas.height);
+}

@@ -19,3 +19,7 @@ let neighbourDistance = 100;
 var energyBalls = [];
 var nodes = [];
 var fakeNodes = [];
+var nodeSize = 3;
+var orbSize = 2;
+var orbSpeed = 0.5;
+var colorShift = 10;

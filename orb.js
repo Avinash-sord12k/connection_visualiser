@@ -8,6 +8,8 @@ class Orb {
         this.to = to;
         this.radius = 1;
         this.reached = 0;
+        this.startTime = Date.now();
+        this.distanceToDestination = this.pos.subtract(this.to.pos).magnitude();
     }
 
     move() {
@@ -23,11 +25,18 @@ class Orb {
 
 function moveOrbs() {
     energyBalls.forEach((orb, index) => {
+        if (Date.now() - orb.startTime > orb.distanceToDestination / orb.speed * 1000) {
+            orb.reached = 1;
+            energyBalls.splice(index, 1);
+        }
         orb.move();
-        if (orb.hasReachedDestination()){
+        if (orb.hasReachedDestination()) {
             orb.reached = 1;
             createOrbs(orb.to, orb.color);
             fakeNodes.push(new fakeNode(orb.to.pos.x, orb.to.pos.y, orb.color));
+            energyBalls.splice(index, 1);
+        }
+        else if (orb.pos.x > canvas.width || orb.pos.x < 0 || orb.pos.y > canvas.height || orb.pos.y < 0) {
             energyBalls.splice(index, 1);
         }
     });
@@ -46,7 +55,7 @@ $(canvas).on("click", function (e) {
     const mousePos = new Vector(e.offsetX, e.offsetY);
     nodes.forEach(node => {
         const distance = node.pos.subtract(mousePos).magnitude();
-        if ((distance < 50) && (node.activated===0)) {
+        if ((distance < 50) && (node.activated === 0)) {
             createOrbs(node);
         }
     });
@@ -58,7 +67,7 @@ function createOrbs(node, last_color) {
     node.activated = 1;
     node.neighbours.filter(neighbour => neighbour.activated === 0).forEach(neighbour => {
         const orb = new Orb(node.pos.x, node.pos.y, node, neighbour);
-        orb.color = (last_color) ? rotateColor(last_color, 30): orb.color;
+        orb.color = (last_color) ? rotateColor(last_color, colorShift) : orb.color;
         node.color = orb.color;
         energyBalls.push(orb);
     });

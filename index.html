@@ -15,88 +15,90 @@
 <body>
     <canvas id="bg"></canvas>
     <canvas id="canvas"></canvas>
-    <div class="control-container">
+    <div id="control-container" class="control-container">
         <button id="toggle-control-panel">hide</button>
         <h2>connection visualiser</h2>
-        <div class="control">
-            <div class="control-title">Node generation</div>
+        <div class="controls">
+            <div class="control">
+                <div class="control-title">Node generation</div>
+                <div class="control-options">
+                    <button class="active" id="random-node-generation">random</button>
+                    <button id="controlled-node-generation">controlled</button>
+                </div>
+            </div>
+            <div class="control" id="node-control">
+                <div class="control-title">Node</div>
+                <div class="control-content">
+                    <div class="control-item">
+                        <div class="control-item-title">Node Count</div>
+                        <div class="control-item-content">
+                            <input type="number" id="node-count" value="100" min="10" max="1000">
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-item-title">Connection range</div>
+                        <div class="control-item-content">
+                            <input type="number" id="connection-range" value="100" min="10" max="1000">
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-item-title">Node Size</div>
+                        <div class="control-item-content">
+                            <input type="number" id="node-size" value="5" min="0" max="100">
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-item-title">color angle</div>
+                        <div class="control-item-content">
+                            <input type="number" id="color-angle" min="0" max="100" value="5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="control hide" id="pattern-control">
+                <div class="control-title">Pattern</div>
+                <div class="control-content">
+                    <div class="control-item">
+                        <div class="control-item-title">padding</div>
+                        <div class="control-item-content">
+                            <input type="number" id="padding" value="100" min="10" max="1000">
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-item-title">sides</div>
+                        <div class="control-item-content">
+                            <input type="number" id="polygon sides" min="0" max="100" value="5">
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-item-title">interlocking</div>
+                        <div class="control-item-content">
+                            <input type="number" id="interlocking" min="0" max="1" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="control" id="orb-control">
+                <div class="control-title">Orb</div>
+                <div class="control-content">
+                    <div class="control-item">
+                        <div class="control-item-title">Orb Size</div>
+                        <div class="control-item-content">
+                            <input type="number" id="orb-size" value="10" min="0" max="100">
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-item-title">Orb Speed</div>
+                        <div class="control-item-content">
+                            <input type="number" id="orb-speed" value="1" min="0" max="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="control-options">
-                <button id="random-node-generation">random</button>
-                <button id="controlled-node-generation">controlled</button>
+                <button id="reset">reset</button>
+                <button id="save">save</button>
             </div>
-        </div>
-        <div class="control" id="node-control">
-            <div class="control-title">Node</div>
-            <div class="control-content">
-                <div class="control-item">
-                    <div class="control-item-title">Node Count</div>
-                    <div class="control-item-content">
-                        <input type="number" id="node-count" value="100" min="10" max="1000">
-                    </div>
-                </div>
-                <div class="control-item">
-                    <div class="control-item-title">Node Size</div>
-                    <div class="control-item-content">
-                        <input type="number" id="node-size" value="5" min="0" max="100">
-                    </div>
-                </div>
-                <div class="control-item">
-                    <div class="control-item-title">color angle</div>
-                    <div class="control-item-content">
-                        <input type="number" id="color-angle" min="0" max="100" value="5">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="control" id="pattern-control">
-            <div class="control-title">Pattern</div>
-            <div class="control-content">
-                <div class="control-item">
-                    <div class="control-item-title">padding</div>
-                    <div class="control-item-content">
-                        <input type="number" id="padding" value="100" min="10" max="1000">
-                    </div>
-                </div>
-                <div class="control-item">
-                    <div class="control-item-title">sides</div>
-                    <div class="control-item-content">
-                        <input type="number" id="polygon sides" min="0" max="100" value="5">
-                    </div>
-                </div>
-                <div class="control-item">
-                    <div class="control-item-title">interlocking</div>
-                    <div class="control-item-content">
-                        <input type="number" id="interlocking" min="0" max="1" value="0">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="control" id="orb-control">
-            <div class="control-title">Orb</div>
-            <div class="control-content">
-                <div class="control-item">
-                    <div class="control-item-title">Orb Count</div>
-                    <div class="control-item-content">
-                        <input type="number" id="orb-count" value="10" min="0" max="1000">
-                    </div>
-                </div>
-                <div class="control-item">
-                    <div class="control-item-title">Orb Size</div>
-                    <div class="control-item-content">
-                        <input type="number" id="orb-size" value="10" min="0" max="100">
-                    </div>
-                </div>
-                <div class="control-item">
-                    <div class="control-item-title">Orb Speed</div>
-                    <div class="control-item-content">
-                        <input type="number" id="orb-speed" value="1" min="0" max="100">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="control-options">
-            <button id="reset">reset</button>
-            <button id="save">save</button>
         </div>
     </div>
 </body>
@@ -107,39 +109,7 @@
 <script src="run.js"></script>
 <script src="script.js"></script>
 <script>
-    var mainMenu = $('.control-container');
-    var toggler = $('#toggle-control-panel');
-
-    var randomNodeGenerator = $('#random-node-generation');
-    var controlledNodeGenerator = $('#controlled-node-generation');
-
-    var reset = $('#reset');
-    var save = $('#save');
-
-    var nodeControls = $('#node-control');
-    var nodeCount = $('#node-count');
-    var nodeSize = $('#node-size');
-    var colorAngle = $('#color-angle');
-
-    var orbControls = $('#orb-control');
-    var orbCount = $('#orb-count');
-    var orbSize = $('#orb-size');
-    var orbSpeed = $('#orb-speed');
-
-    var patternControls = $('#pattern-control');
-    var padding = $('#padding');
-    var polygonSides = $('#polygon-sides');
-    var interlocking = $('#interlocking');  
-
-    toggler.on("click", function () {
-        mainMenu.toggleClass("hide");
-        if (mainMenu.hasClass("hide")) {
-            toggler.text("show");
-        } else {
-            toggler.text("hide");
-        }
-    });
-
+    
 </script>
 
 </html>
