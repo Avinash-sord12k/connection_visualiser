@@ -44,11 +44,11 @@ class Node {
 function fakeNode(x, y, color) {
     this.pos = new Vector(x, y);
     this.color = color;
-    this.size = nodeSize;
+    this.size = nodeSize.val() || 2;
     this.draw = function () {
         ctx.beginPath();
         ctx.fillStyle = `rgb(${this.color[0]}, ${this.color[1]}, ${this.color[2]})`
-        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+        ctx.arc(this.pos.x, this.pos.y, this.size, 0, 2 * Math.PI);
         ctx.fill();
     }
 }
@@ -67,7 +67,7 @@ function drawLines(neighbourDistance) {
 }
 
 // creating node population
-function createPopulation(population, neighbourDistance) {
+function createPopulation(population, neighbourDistance=neighbourDistance) {
     for (let idx = 0; idx < population; idx++) {
         const node = new Node(Math.random() * canvas.width, Math.random() * canvas.height);
         nodes.push(node);
@@ -103,6 +103,8 @@ function resetPage() {
     nodes = [];
     energyBalls = [];
     fakeNodes = [];
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx2.clearRect(0, 0, canvas.width, canvas.height);
 }

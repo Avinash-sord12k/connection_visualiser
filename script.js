@@ -40,7 +40,8 @@ randomNodeGenerator.on("click", function () {
         patternControls.addClass("hide");
     }, 400);
     resetPage();
-    createPopulation();
+    createPopulation(nodeCount.val(), connectionRange.val());
+    console.log(nodes.length, energyBalls);
 });
 
 controlledNodeGenerator.on("click", function () {
@@ -57,7 +58,7 @@ controlledNodeGenerator.on("click", function () {
 reset.on("click", function () {
     resetPage();
     if (randomNodeGenerator.hasClass("active")) {
-        createPopulation();
+        createPopulation(nodeCount.val(), connectionRange.val());
     } else {
         createHexagonalPopulation(redius = 20, sides = 6, padding = 10, interlocking = 1);
     }
