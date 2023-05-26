@@ -11,7 +11,7 @@ function animate() {
         ctx.fillStyle = `rgb(${ball.color[0]}, ${ball.color[1]}, ${ball.color[2]})`;
         ctx.fill();
     });
-    fakeNodes.forEach(node => { node.draw() });
+    fakeNodes.forEach(node => { node.draw();});
     requestAnimationFrame(animate);
 }
 
